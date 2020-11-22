@@ -2,9 +2,7 @@ package Ex1;
 
 import java.util.*;
 
-/** a class that simulate a weighted unidirectional graph.
- *  the graph is build on nodes of numbers.
- */
+/** a class that simulate a weighted unidirectional graph.*/
 public class WGraph_DS implements weighted_graph {
 
 
@@ -57,17 +55,13 @@ public class WGraph_DS implements weighted_graph {
 
 
 
-        public boolean hasNi(node_info node) {
+        public boolean hasnei(node_info node) {
 
             return neiList.contains(node);
         }
 
 
-        /** adds a node as neighbor and created a weighted edge.
-         *  the neighboring node will also add the the node as a neighbor with the same edge.
-         *  neighbor cannot be the node himself.
-         *  in case of invalid neighbor nothing changes.
-         */
+        /** adds a node as neighbor and created a weighted edge.*/
         public void addNi(NodeInfo node, double weight) {
 
             if (node != null && !edgeMap.containsKey(node) && _key != node.getKey())
@@ -85,10 +79,9 @@ public class WGraph_DS implements weighted_graph {
         }
 
 
-        /** remove the node from list of neighbors and remove the edge.
-         *  in case of none existing neighbor nothing will change.
-         */
+        /** remove the node from list of neighbors and remove the edge.*/
         public void removeNi(NodeInfo node) {
+
             if (node != null && edgeMap.containsKey(node))
             {
                 edgeMap.remove(node);
@@ -98,11 +91,9 @@ public class WGraph_DS implements weighted_graph {
         }
 
 
-        /** update the weight of the edge between this node and the inputted node.
-         * the function does the same to the inputted node from his side.
-         * if the edge does not exist nothing changes.
-         */
+        /** update the weight of the edge between this node and the inputted node.*/
         public void setEdge(node_info ni, double weight) {
+
             if (neiList.contains(ni) && edgeMap.get(ni) != weight)
             {
                 edgeMap.replace(ni, weight);
@@ -114,10 +105,9 @@ public class WGraph_DS implements weighted_graph {
 
 
 
-        /** return the weight of the edge between this node and the inputted node.
-         * if the edge does not exist return -1
-         */
+        /** return the weight of the edge between this node and the inputted node.*/
         public double getEdge(node_info ni) {
+
             if (edgeMap.containsKey(ni))
             {
                 return edgeMap.get(ni);
@@ -128,13 +118,10 @@ public class WGraph_DS implements weighted_graph {
 
 
 
-
-        /** a toString function.
-         * return a string that hold all the information of the node
-         * prints the node's key and all his neighbors and edges
-         */
+        /** return a string that hold all the information of the node.*/
         public String toString() {
             String info = "[" + _key + "]:";
+
             for (node_info ni : neiList)
             {
                 info += " [" + ni.getKey() + "," + this.getEdge(ni) + "]";
@@ -143,11 +130,10 @@ public class WGraph_DS implements weighted_graph {
             return info;
         }
 
-        /** return a string with the nodes information.
-         * mainly used to save the node info in a file.
-         */
-        public String toSave() {
+        /** return a string with the nodes information, for saving the node info in a file.*/
+        public String forSaving() {
             String info = "[" + _key + "]";
+
             for (node_info ni : neiList)
             {
                 info += "[" + ni.getKey() + "|" + this.getEdge(ni) + "]";
@@ -178,6 +164,7 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public node_info getNode(int key) {
+
         if (nodeListMap.containsKey(key))
         {
             return nodeListMap.get(key);
@@ -193,11 +180,12 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public boolean hasEdge(int node1, int node2) {
+
         if (nodeListMap.containsKey(node1) && nodeListMap.containsKey(node2))
         {
             NodeInfo NODE1 = (NodeInfo) this.getNode(node1);
             NodeInfo NODE2 = (NodeInfo) this.getNode(node2);
-            return NODE1.hasNi(NODE2);
+            return NODE1.hasnei(NODE2);
         }
         return false;
     }
@@ -211,6 +199,7 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public double getEdge(int node1, int node2) {
+
         if (nodeListMap.containsKey(node1) && nodeListMap.containsKey(node2))
         {
             NodeInfo NODE1 = (NodeInfo) this.getNode(node1);
@@ -227,6 +216,7 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public void addNode(int key) {
+
         if (!nodeListMap.containsKey(key))
         {
             NodeInfo node = new NodeInfo(key);
@@ -248,11 +238,13 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public void connect(int node1, int node2, double w) {
+
         if (node1 != node2 && w > 0 && nodeListMap.containsKey(node1) && nodeListMap.containsKey(node2))
         {
             NodeInfo NODE1 = nodeListMap.get(node1);
             NodeInfo NODE2 = nodeListMap.get(node2);
-            if(NODE1.hasNi(NODE2))
+
+            if(NODE1.hasnei(NODE2))
             {
                 NODE1.setEdge(NODE2, w);
             }
@@ -294,13 +286,16 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public node_info removeNode(int key) {
+
         if (nodeListMap.containsKey(key))
         {
             NodeInfo node = (NodeInfo) this.getNode(key);
             Collection<node_info> nis = node.getNis();
+
             if (!nis.isEmpty())
             {
                 ArrayList<node_info> nisTemp = new ArrayList<node_info>(nis);
+
                 for (node_info ni : nisTemp)
                 {
                     NodeInfo niTemp = (NodeInfo) ni;
@@ -324,6 +319,7 @@ public class WGraph_DS implements weighted_graph {
      */
     @Override
     public void removeEdge(int node1, int node2) {
+
         if (hasEdge(node1, node2))
         {
             NodeInfo NODE1 = (NodeInfo) this.getNode(node1);
@@ -369,6 +365,7 @@ public class WGraph_DS implements weighted_graph {
     public String toString(){
         String sGraph = "nodes: "+nodeList.size()+", edges: "+edgeSize;
         Collection<node_info> graphList = this.getV();
+
         for(Iterator<node_info> node = graphList.iterator(); node.hasNext();)
         {
             NodeInfo nodeI = (NodeInfo) node.next();
@@ -382,13 +379,14 @@ public class WGraph_DS implements weighted_graph {
      *  mainly used for the WGraph_Algo class.
      * @return
      */
-    public String toSave(){
+    public String forSaving(){
         String sGraph = "";
         Collection<node_info> graphList = this.getV();
+
         for(Iterator<node_info> node = graphList.iterator(); node.hasNext();)
         {
             NodeInfo nodeI = (NodeInfo) node.next();
-            sGraph += nodeI.toSave() + "\n";
+            sGraph += nodeI.forSaving() + "\n";
         }
         return sGraph;
     }
