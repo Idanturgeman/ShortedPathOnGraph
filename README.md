@@ -15,8 +15,8 @@ $ git clone https://github.com/Idanturjeman/ShortedPathOnGraph.git
 ### some visual examples
 ![alt text](https://www.101computing.net/wp/wp-content/uploads/Dijkstra-Algorithm.png)
 
+<img src = "https://rkpandey.com/AlgorithmHelper/assets/dijkstra1.png" width="500" >
 
-![alt text](https://rkpandey.com/AlgorithmHelper/assets/dijkstra1.png)
 
 ### In addition
 
