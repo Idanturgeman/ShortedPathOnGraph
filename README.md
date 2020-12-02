@@ -17,3 +17,7 @@ $ git clone https://github.com/Idanturjeman/ShortedPathOnGraph.git
 
 
 ![alt text](https://rkpandey.com/AlgorithmHelper/assets/dijkstra1.png)
+
+### In addition
+
+For more [information](https://github.com/Idanturjeman/ShortedPathOnGraph/wiki) on this project.
